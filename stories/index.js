@@ -120,7 +120,7 @@ storiesOf("InterviewerListItem", module)
     <InterviewerListItem
       name={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={() => action("setInterviewer")(intArr.id)}
+      setInterviewer={() => action("setInterviewer")(interviewer.id)}
     />
   ));
 
