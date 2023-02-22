@@ -6,6 +6,8 @@ import "components/Appointment";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
+
+
 export default function Application(props) {
 
   //combine all states into one object
@@ -30,6 +32,7 @@ export default function Application(props) {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
+      interviewers={state.interviewers}
         />
     )
   });
@@ -39,12 +42,17 @@ export default function Application(props) {
       axios.get("http://localhost:8001/api/days"),
       axios.get("http://localhost:8001/api/appointments"),
       axios.get("http://localhost:8001/api/interviewers")
-    ]).then ((response) => {
-      setState(prev => ({...prev, days: response[0].data, appointments: response[1].data, interviewers: response[2].data }));
+    ]).then((response) => {
+      setState(prev => ({
+        ...prev,
+        days: response[0].data,
+        appointments: response[1].data,
+        interviewers: response[2].data
+      }));
       console.log(response[0].data);
       console.log(response[1].data);
       console.log(response[2].data);
-    })
+    });
   }, []);
 
   return (
@@ -73,7 +81,10 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointment}
-        <Appointment key="last" time="5pm" />
+        <Appointment 
+          key="last" 
+          time="5pm" 
+          interviewers={state.interviewers} />
       </section>
     </main>
   );
