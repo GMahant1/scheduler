@@ -33,6 +33,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={(getInterviewersForDay(state, state.day))}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -49,11 +50,38 @@ export default function Application(props) {
         appointments: response[1].data,
         interviewers: response[2].data
       }));
-      console.log(response[0].data);
-      console.log(response[1].data);
-      console.log(response[2].data);
+      //console.log(response[0].data);
+      //console.log(response[1].data);
+      //console.log(response[2].data);
     });
   }, []);
+
+  function bookInterview(id, interview) {
+
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+      .then(response => {
+
+        if (response.status === 204) {
+
+          const appointment = {
+            ...state.appointments[id],
+            interview: { ...interview }
+          };
+
+          const appointments = {
+            ...state.appointments,
+            [id]: appointment
+          };
+          
+          setState({
+            ...state,
+            appointments,
+          });
+        }
+      }).catch(error => {
+        throw new Error(error)
+      });
+  };
 
   return (
     <main className="layout">
