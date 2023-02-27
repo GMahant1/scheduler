@@ -8,6 +8,7 @@ import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error";
 
 
 export default function Appointment(props) {
@@ -19,6 +20,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   //mode constants for visualMode function
 
@@ -31,20 +34,22 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+
     transition(SAVING);
-    props.bookInterview(props.id, interview)
-      .then(() => transition(SHOW));
+
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE), true);
   }
 
-  function onDelete(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
+  function onDelete(event) {
     transition(DELETING, true);
-    props.cancelInterview(props.id, interview)
+
+    props
+      .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch((error) => console.log(error));
+      .catch(error => transition(ERROR_DELETE), true);
   };
 
 
@@ -96,6 +101,18 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onCancel={back}
           onSave={onSave} />
+      )}
+
+      {mode === ERROR_SAVE && (
+        <Error
+          message={`ERROR: Appointment not saved.`}
+          onClose={() => transition(EMPTY)} />
+      )}
+
+      {mode === ERROR_DELETE && (
+        <Error
+          message={`ERROR: Appointment not deleted.`}
+          onClose={() => transition(SHOW)} />
       )}
     </article>);
 };
