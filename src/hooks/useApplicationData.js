@@ -15,23 +15,12 @@ const [state, setState] = useState({
 
 const setDay = day => setState({ ...state, day });
 
-// function selectDay(day) {
-//   const days = {
-//     Monday: 0,
-//     Tuesday: 1,
-//     Wednesday: 2,
-//     Thursday: 3,
-//     Friday: 4,
-//   };
-//   return days[day];
-// }
-
 //axios request to load initial data
 useEffect(() => {
   Promise.all([
-    axios.get("http://localhost:8001/api/days"),
-    axios.get("http://localhost:8001/api/appointments"),
-    axios.get("http://localhost:8001/api/interviewers")
+    axios.get("/api/days"),
+    axios.get("/api/appointments"),
+    axios.get("/api/interviewers")
   ]).then((response) => {
     setState(prev => ({
       ...prev,
@@ -44,7 +33,7 @@ useEffect(() => {
 
 function bookInterview(id, interview) {
 
-  return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+  return axios.put(`/api/appointments/${id}`, { interview })
     .then(response => {
 
       if (response.status === 204) {
@@ -75,7 +64,7 @@ function bookInterview(id, interview) {
 
 function cancelInterview(id) {
 
-  return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+  return axios.delete(`/api/appointments/${id}`)
     .then(response => {
 
       if (response.status === 204) {
