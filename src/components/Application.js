@@ -16,7 +16,7 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-  const appointment = getAppointmentsForDay(state, state.day).map(appointment => {
+  const appointments = getAppointmentsForDay(state, state.day).map(appointment => {
 
     return (
       <Appointment
@@ -55,7 +55,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointment}
+        {appointments}
         <Appointment
           key="last"
           time="5pm"
