@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+A comprehensive appointment scheduler made using React. Contains the ability to create, edit and delete appointments while displaying the appropriate user related messages.
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +23,4 @@ npm test
 ```sh
 npm run storybook
 ```
+
