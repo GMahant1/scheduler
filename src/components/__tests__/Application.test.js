@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { 
-  render, 
-  cleanup, 
+import {
+  render,
+  cleanup,
   waitForElement,
   fireEvent,
   getByText,
@@ -11,16 +11,17 @@ import {
   getByAltText,
   getByPlaceholderText,
   queryByText,
-  queryByAltText, } from "@testing-library/react";
+  queryByAltText,
+} from "@testing-library/react";
 import Application from "components/Application";
 
 afterEach(cleanup);
 
 describe("Application", () => {
 
-  it("defaults to Monday and changes the schedule when a new day is selected", async() => {
+  it("defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
-  
+
     await waitForElement(() => getByText("Monday")).then(() => {
       fireEvent.click(getByText("Tuesday"));
       expect(getByText("Leopold Silvers")).toBeInTheDocument();
@@ -29,20 +30,20 @@ describe("Application", () => {
 
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     const { container, debug } = render(<Application />);
-  
+
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
-  
+
     fireEvent.click(getByAltText(appointment, "Add"));
-  
+
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
     });
 
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
-  
+
     fireEvent.click(getByText(appointment, "Save"));
 
     expect(getByText(appointment, "Saving...")).toBeInTheDocument();
@@ -54,7 +55,7 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-    
+
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
@@ -168,5 +169,5 @@ describe("Application", () => {
     fireEvent.click(closeButton);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
-  })
+  });
 });

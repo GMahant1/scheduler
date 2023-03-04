@@ -1,3 +1,4 @@
+
 export function getAppointmentsForDay(state, days) {
   const appointments = [];
 
