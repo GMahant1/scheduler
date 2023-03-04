@@ -5,7 +5,7 @@ import classNames from "classnames";
 export default function InterviewerListItem(props) {
 
   let interviewerClass = classNames("interviewers__item",
-  {"interviewers__item--selected": props.selected});
+    { "interviewers__item--selected": props.selected });
 
   return (
     <li className={interviewerClass} onClick={() => props.setInterviewer(props.name)}>
