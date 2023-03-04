@@ -11,13 +11,13 @@ export default function Form(props) {
 
   //helper reset function
   const reset = () => {
-    setStudent("")
-    setInterviewer(null)
+    setStudent("");
+    setInterviewer(null);
   };
 
   const cancel = () => {
     reset();
-    props.onCancel()
+    props.onCancel();
   };
 
   function validate() {
@@ -26,13 +26,13 @@ export default function Form(props) {
       return;
     }
 
-    setError("")
+    setError("");
     if (interviewer === null) {
       setError("Please select an interviewer");
       return;
     }
-  
-    setError("")
+
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -52,10 +52,10 @@ export default function Form(props) {
           />
         </form>
         <section className="appointment__validation">{error}</section>
-        <InterviewerList 
-            interviewers={(props.interviewers)} 
-            value={interviewer} 
-            onChange={(event) => setInterviewer(event)}
+        <InterviewerList
+          interviewers={(props.interviewers)}
+          value={interviewer}
+          onChange={(event) => setInterviewer(event)}
         />
       </section>
 
