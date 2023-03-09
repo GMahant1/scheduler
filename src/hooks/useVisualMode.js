@@ -20,11 +20,14 @@ export default function useVisualMode(initial) {
 
   function back() {
     const tempHistory = [...history];
+    console.log("tempHistory",tempHistory);
     tempHistory.pop();
     setHistory(tempHistory);
-    tempHistory.length > 1
-      ? setMode(tempHistory[tempHistory.length - 1]) : setMode(initial);
+    const newMode = tempHistory.length > 1
+      ? tempHistory[tempHistory.length - 1] : initial;
+    console.log("newMode",newMode);
+    setMode(newMode);
   };
-
+    
   return { mode, transition, back };
 };
