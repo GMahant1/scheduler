@@ -40,7 +40,7 @@ export default function Appointment(props) {
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE), true);
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
   function onDelete(event) {
@@ -49,7 +49,7 @@ export default function Appointment(props) {
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE), true);
+      .catch(error => transition(ERROR_DELETE, true));
   };
 
 
@@ -76,11 +76,11 @@ export default function Appointment(props) {
         />
       )}
 
-      {mode === SAVING && (<Status message={`Saving...`} />)}
+      {mode === SAVING && (
+        <Status message={`Saving...`} />)}
 
       {mode === DELETING && (
-        <Status
-          message={`Deleting...`} />
+        <Status message={`Deleting...`} />
       )}
 
       {mode === CONFIRM && (
