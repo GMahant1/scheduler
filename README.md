@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-A comprehensive appointment scheduler made using React. Contains the ability to create, edit and delete appointments while displaying the appropriate user related messages.
+A comprehensive appointment scheduler made using React. Contains the ability to create, edit and delete appointments while displaying the appropriate user related messages. Please visit https://github.com/GMahant1/scheduler-api to download and install the database server. Install https://github.com/GMahant1/scheduler-dashboard to view a dashboard made with React displaying live statistics for the scheduler!
 
 ## Setup
 
