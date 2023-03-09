@@ -72,7 +72,7 @@ export default function Appointment(props) {
         <Form
           interviewers={props.interviewers}
           onSave={onSave}
-          onCancel={() => back()}
+          onCancel={back}
         />
       )}
 
@@ -106,13 +106,13 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && (
         <Error
           message={`ERROR: Appointment not saved.`}
-          onClose={() => transition(EMPTY)} />
+          onClose={back} />
       )}
 
       {mode === ERROR_DELETE && (
         <Error
           message={`ERROR: Appointment not deleted.`}
-          onClose={() => transition(SHOW)} />
+          onClose={back} />
       )}
     </article>);
 };
