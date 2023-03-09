@@ -93,6 +93,8 @@ export default function useApplicationData() {
       });
   };
 
+
+  //function used to check remaining spots and update state with the correct information
   function updatedSpots(state, appointments) {
     let result = [];
 

@@ -1,4 +1,4 @@
-
+//used to return an array containing appointments for a selected day
 export function getAppointmentsForDay(state, days) {
   const appointments = [];
 
@@ -14,6 +14,7 @@ export function getAppointmentsForDay(state, days) {
   return appointments;
 }
 
+//used to return an array containing intervieweres for a selected day
 export function getInterviewersForDay(state, days) {
 
   const interviewers = [];
@@ -30,6 +31,7 @@ export function getInterviewersForDay(state, days) {
   return interviewers;
 }
 
+//used to return a succesful interview
 export function getInterview(state, interview) {
 
   if (!interview) {
