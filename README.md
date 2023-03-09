@@ -24,4 +24,8 @@ npm test
 npm run storybook
 ```
 
-![Here is a short clip of cypress testing and confirming all 3 functionalities work as intended!] (https://github.com/GMahant1/scheduler/blob/master/docs/appointments.spec.js.mp4#:~:text=Download-,View%20raw,-Give%20feedback)
+Here is a short clip of cypress testing and confirming all 3 functionalities work as intended! 
+
+
+https://user-images.githubusercontent.com/108849228/222932588-bebfc254-3d01-438f-ab16-7e0bb54e613b.mp4
+
